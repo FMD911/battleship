@@ -1,7 +1,7 @@
 const Gameboard = require("../src/gameboard");
 const Ship = require("../src/ship");
 
-test("can place a ship", () => {
+test("places ship correctly", () => {
   const board = Gameboard();
   const ship = Ship(3);
 
@@ -10,7 +10,7 @@ test("can place a ship", () => {
   expect(board.ships.length).toBe(1);
 });
 
-test("receives attack and records hit", () => {
+test("hits ship correctly", () => {
   const board = Gameboard();
   const ship = Ship(2);
 
@@ -19,4 +19,12 @@ test("receives attack and records hit", () => {
   board.receiveAttack([0, 0]);
 
   expect(ship.hits).toBe(1);
+});
+
+test("records missed attack", () => {
+  const board = Gameboard();
+
+  board.receiveAttack([5, 5]);
+
+  expect(board.missedAttacks.length).toBe(1);
 });
