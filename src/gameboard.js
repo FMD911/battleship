@@ -1,10 +1,6 @@
-function Gameboard() {
+export default function Gameboard() {
   const ships = [];
   const missedAttacks = [];
-
-  const board = Array.from({ length: 10 }, () =>
-    Array(10).fill(null)
-  );
 
   function placeShip(ship, [x, y], direction) {
     const positions = [];
@@ -25,12 +21,13 @@ function Gameboard() {
       for (const pos of entry.positions) {
         if (pos[0] === x && pos[1] === y) {
           entry.ship.hit();
-          return;
+          return "hit";
         }
       }
     }
 
     missedAttacks.push([x, y]);
+    return "miss";
   }
 
   return {
@@ -40,5 +37,3 @@ function Gameboard() {
     receiveAttack,
   };
 }
-
-module.exports = Gameboard;

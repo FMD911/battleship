@@ -1,9 +1,5 @@
-function Player(isComputer = false) {
+export default function Player(isComputer = false) {
   const previousAttacks = new Set();
-
-  function attack(board, coord) {
-    board.receiveAttack(coord);
-  }
 
   function randomAttack() {
     let x, y, key;
@@ -15,14 +11,10 @@ function Player(isComputer = false) {
     } while (previousAttacks.has(key));
 
     previousAttacks.add(key);
-
     return [x, y];
   }
 
   return {
-    attack,
-    randomAttack: isComputer ? randomAttack : undefined,
+    randomAttack,
   };
 }
-
-module.exports = Player;

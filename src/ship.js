@@ -1,4 +1,4 @@
-function Ship(length) {
+export default function Ship(length) {
   let hits = 0;
 
   function hit() {
@@ -15,8 +15,6 @@ function Ship(length) {
     isSunk,
     get hits() {
       return hits;
-    }
+    },
   };
 }
-
-module.exports = Ship;
